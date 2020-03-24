@@ -1,0 +1,92 @@
+﻿@model Almacen.Models.Empleado
+
+@{
+    ViewData["Title"] = "Eliminando Empleado";
+}
+
+<h1>Borrar Empleado</h1>
+
+<div>
+    <h3>Una vez este empleado sea borrado no se podrá recuperar</h3>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Nombre
+        </dd>
+        <dt class = "col-sm-2">
+            Apellido
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Apellido
+        </dd>
+        <dt class = "col-sm-2">
+            Sexo
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                if (Model.Sexo.ToString() == "M")
+                {
+                    <span>Masculino</span>
+                }
+                else if (Model.Sexo.ToString() == "F")
+                {
+                    <span>Femenino</span>
+                }
+                else
+                {
+                    <span>Femenino</span>
+                }
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            Dirección
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Direccion
+        </dd>
+        <dt class = "col-sm-2">
+            Email
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class = "col-sm-2">
+            Fecha de Nacimiento
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.FechaNacimiento
+        </dd>
+        <dt class = "col-sm-2">
+            Fecha de Registro
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.FechaIngreso
+        </dd>
+        <dt class = "col-sm-2">
+            Cédula
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Cedula
+        </dd>
+        <dt class = "col-sm-2">
+            Sueldo
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Sueldo
+        </dd>
+        <dt class = "col-sm-2">
+            Posición
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.Posicion
+        </dd>
+    </dl>
+    
+    <form asp-action="BorrarEmpleado">
+        <input type="hidden" asp-for="IDEmpleado" />
+        <input type="submit" value="Borrar Empleado" class="btn btn-outline-danger" style="margin:10px;margin-left:0px;width:30%;" />
+    </form>
+</div>

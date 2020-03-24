@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Almacen.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+
+@if (Model.Count() > 0)
+{
+    <h1>Clientes</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Sexo
+                </th>
+                <th>
+                    Direccion
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Fecha de Nacimiento
+                </th>
+                <th>
+                    Fecha de Registro
+                </th>
+                <th>
+                    <a asp-action="AgregarCliente" class="btn btn-outline-success">Agregar Nuevo</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @{
+                            if (item.Sexo.ToString() == "M")
+                            {
+                                <span>Masculino</span>
+                            }
+                            else if (item.Sexo.ToString() == "F")
+                            {
+                                <span>Femenino</span>
+                            }
+                            else
+                            {
+                                <span>Otro</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <span>@item.FechaNacimiento.ToShortDateString()</span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaRegistro)
+                    </td>
+                    <td>
+                        <a asp-action="EditarCliente" asp-route-id="@item.IDCliente" class="btn btn-outline-warning">Editar</a>
+                        <a asp-action="BorrarCliente" asp-route-id="@item.IDCliente" class="btn btn-outline-danger">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <center><h3><strong>Actualmente no existen clientes, intente @Html.ActionLink("agregar uno.", "AgregarCliente")</strong></h3></center>
+}

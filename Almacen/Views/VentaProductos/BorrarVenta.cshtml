@@ -1,0 +1,36 @@
+﻿@model Almacen.Models.VentaProductos
+
+@{
+    ViewData["Title"] = "Eliminando Venta";
+}
+
+<h1>Eliminar Venta</h1>
+<h3>También se eliminarán todas sus referencias/ventas.</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre del Producto
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.producto.Nombre
+        </dd class>
+        <dt class = "col-sm-2">
+            Nombre del Cliente
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.cliente.Nombre
+        </dd class>
+        <dt class = "col-sm-2">
+            Fecha de la Venta
+        </dt>
+        <dd class = "col-sm-10">
+            @Model.FechaVenta
+        </dd>
+    </dl>
+    
+    <form asp-action="BorrarVenta">
+        <input type="hidden" asp-for="IDVenta" />
+        <input type="submit" value="Eliminar Venta" class="btn btn-outline-danger" style="margin:10px;margin-left:0px;width:30%;" /> 
+    </form>
+</div>

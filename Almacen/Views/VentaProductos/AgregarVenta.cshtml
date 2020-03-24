@@ -1,0 +1,67 @@
+﻿@model Almacen.Models.VentaProductos
+
+@{
+    ViewData["Title"] = "Registrando Venta";
+}
+
+<h1>Registrar Venta</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AgregarVenta">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="alert-danger text-center" id="outof">@Html.ValidationMessage("outOf")</div>
+            <div class="form-group">
+                @if ((ViewBag.IDProducto as SelectList).Count() > 0)
+                {
+                    <label asp-for="IDProducto" class="control-label">Nombre del Producto</label>
+                    <select asp-for="IDProducto" class="form-control" asp-items="ViewBag.IDProducto"></select>
+                }
+                else
+                {
+                    <div class="alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen productos registrados, intente <a href="~/Producto/AgregarProducto">registrar uno.</a></strong></div>
+                }
+            </div>
+            <div class="form-group">
+                @if ((ViewBag.IDCliente as SelectList).Count() > 0)
+                {
+                    <label asp-for="IDCliente" class="control-label">Nombre del Cliente</label>
+                    <select asp-for="IDCliente" class="form-control" asp-items="ViewBag.IDCliente"></select>
+                }
+                else
+                {
+                    <div class="alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen clientes registrados, intente <a href="~/Cliente/AgregarCliente">registrar uno.</a></strong></div>
+                }
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registrar Venta" class="btn btn-outline-primary" style="width:100%;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnReg = document.querySelector('.btn')
+            const inps   = document.querySelectorAll('.form-control');
+            if (inps.length != 2)
+            {
+                btnReg.disabled = true;
+                btnReg.setAttribute("style", "width:100%;cursor:not-allowed;");
+            }
+            else
+                btnReg.disabled = false;
+
+            var outof = document.querySelector("#outof");
+            var fieldError = document.querySelector(".field-validation-error");
+
+            if (fieldError == null)
+                outof.setAttribute("style", "");
+            else
+                outof.setAttribute("style", "padding:10px;margin:10px;margin-left:0px;");
+        });
+    </script>
+}

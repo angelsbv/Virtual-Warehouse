@@ -1,0 +1,43 @@
+﻿@model Almacen.Models.Producto
+
+@{
+    ViewData["Title"] = "Agregando Producto";
+}
+
+<h1>Nuevo Producto</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form onsubmit="checkInt();" asp-action="AgregarProducto">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label">Nombre del Producto</label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label">Descripción</label>
+                <textarea asp-for="Descripcion" class="form-control" style="max-height:350px;"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Unidad" class="control-label">Unidad(es)</label>
+                <input asp-for="Unidad" class="form-control int" />
+                <span asp-validation-for="Unidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control int" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Agregar Producto" class="btn btn-outline-primary" style="width:100%;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript" src="~/js/ProductoVald.js"></script>
+}

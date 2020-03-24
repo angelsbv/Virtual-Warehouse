@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Almacen.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Empleados";
+}
+@if (Model.Count() > 0)
+{
+    <h1>Empleados</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Sexo
+                </th>
+                <th>
+                    Dirección
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Cédula
+                </th>
+                <th>
+                    Sueldo
+                </th>
+                <th>
+                    Posición
+                </th>
+                <th>
+                    Fecha de Nacimiento
+                </th>
+                <th>
+                    Fecha de Ingreso
+                </th>
+                <th>
+                    <a class="btn btn-outline-success" asp-action="AgregarEmpleado">Agregar Nuevo</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @item.Nombre
+                </td>
+                <td>
+                    @item.Apellido
+                </td>
+                <td>
+                    @{
+                        if (item.Sexo.ToString() == "M")
+                        {
+                            <span>Masculino</span>
+                        }
+                        else if(item.Sexo.ToString() == "F")
+                        {
+                            <span>Femenino</span>
+                        }
+                        else
+                        {
+                            <span>Otro</span>
+                        }
+                    }
+                </td>
+                <td>
+                    @item.Direccion
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Cedula
+                </td>
+                <td>
+                    $@item.Sueldo
+                </td>
+                <td>
+                    @item.Posicion
+                </td>
+                <td>
+                    @item.FechaNacimiento.ToShortDateString()
+                </td>
+                <td>
+                    @item.FechaIngreso
+                </td>
+                <td>
+                    <a asp-action="EditarEmpleado" asp-route-id="@item.IDEmpleado" class="btn btn-outline-warning">Editar</a>
+                    <a asp-action="BorrarEmpleado" asp-route-id="@item.IDEmpleado" class="btn btn-outline-danger">Borrar</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <center><h3><strong>Actualmente no existen empleados, intente @Html.ActionLink("agregar uno.", "AgregarEmpleado")</strong></h3></center>
+}
