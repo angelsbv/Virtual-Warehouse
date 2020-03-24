@@ -10,7 +10,7 @@
     <div class="col-md-4">
         <form asp-action="AgregarVenta">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="alert-danger text-center" id="outof">@Html.ValidationMessage("outOf")</div>
+            <div class="alert alert-danger text-center" id="outof">@Html.ValidationMessage("outOf")</div>
             <div class="form-group">
                 @if ((ViewBag.IDProducto as SelectList).Count() > 0)
                 {
@@ -19,7 +19,7 @@
                 }
                 else
                 {
-                    <div class="alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen productos registrados, intente <a href="~/Producto/AgregarProducto">registrar uno.</a></strong></div>
+                    <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen productos registrados, intente <a href="~/Producto/AgregarProducto">registrar uno.</a></strong></div>
                 }
             </div>
             <div class="form-group">
@@ -30,7 +30,7 @@
                 }
                 else
                 {
-                    <div class="alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen clientes registrados, intente <a href="~/Cliente/AgregarCliente">registrar uno.</a></strong></div>
+                    <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen clientes registrados, intente <a href="~/Cliente/AgregarCliente">registrar uno.</a></strong></div>
                 }
 
             </div>
@@ -58,10 +58,14 @@
             var outof = document.querySelector("#outof");
             var fieldError = document.querySelector(".field-validation-error");
 
-            if (fieldError == null)
+            if (fieldError == null) {
                 outof.setAttribute("style", "");
-            else
+                outof.classList.remove("alert");
+            }
+            else {
                 outof.setAttribute("style", "padding:10px;margin:10px;margin-left:0px;");
+                outof.classList.add("alert");
+            }
         });
     </script>
 }
