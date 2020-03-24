@@ -11,29 +11,32 @@
         <form asp-action="AgregarVenta">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="alert alert-danger text-center" id="outof">@Html.ValidationMessage("outOf")</div>
-            <div class="form-group">
-                @if ((ViewBag.IDProducto as SelectList).Count() > 0)
-                {
+
+            @if ((ViewBag.IDProducto as SelectList).Count() <= 0 && (ViewBag.IDCliente as SelectList).Count() <= 0)
+            {
+                <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen productos registrados, intente <a href="~/Producto/AgregarProducto">registrar uno.</a></strong></div>
+                <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen clientes registrados, intente <a href="~/Cliente/AgregarCliente">registrar uno.</a></strong></div>
+            }
+            else if ((ViewBag.IDProducto as SelectList).Count() <= 0)
+            {
+                <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen productos registrados, intente <a href="~/Producto/AgregarProducto">registrar uno.</a></strong></div>
+            }
+            else if ((ViewBag.IDCliente as SelectList).Count() <= 0)
+            {
+                <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen clientes registrados, intente <a href="~/Cliente/AgregarCliente">registrar uno.</a></strong></div>
+            }
+            else
+            {
+                <div class="form-group">
                     <label asp-for="IDProducto" class="control-label">Nombre del Producto</label>
                     <select asp-for="IDProducto" class="form-control" asp-items="ViewBag.IDProducto"></select>
-                }
-                else
-                {
-                    <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen productos registrados, intente <a href="~/Producto/AgregarProducto">registrar uno.</a></strong></div>
-                }
-            </div>
-            <div class="form-group">
-                @if ((ViewBag.IDCliente as SelectList).Count() > 0)
-                {
+                </div>
+                <div class="form-group">
                     <label asp-for="IDCliente" class="control-label">Nombre del Cliente</label>
                     <select asp-for="IDCliente" class="form-control" asp-items="ViewBag.IDCliente"></select>
-                }
-                else
-                {
-                    <div class="alert alert-danger text-center" style="padding:5px;"><strong>Actualmente no existen clientes registrados, intente <a href="~/Cliente/AgregarCliente">registrar uno.</a></strong></div>
-                }
 
-            </div>
+                </div>
+            }
             <div class="form-group">
                 <input type="submit" value="Registrar Venta" class="btn btn-outline-primary" style="width:100%;" />
             </div>
