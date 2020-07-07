@@ -1,0 +1,43 @@
+﻿@model Almacen.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminando Producto";
+}
+
+<h1>Borrar Producto</h1>
+
+<div>
+    <hr />
+    <h3>Se eliminarán todas sus referencias.</h3>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Nombre
+        </dd>
+        <dt class="col-sm-2">
+            Descripción
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Descripcion
+        </dd>
+        <dt class="col-sm-2">
+            Unidad
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Unidad
+        </dd>
+        <dt class="col-sm-2">
+            Precio
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Precio
+        </dd>
+    </dl>
+
+    <form asp-action="BorrarProducto">
+        <input type="hidden" asp-for="IDProducto" />
+        <input type="submit" value="Borrar Producto" class="btn btn-danger" style="margin:10px;margin-left:0px;width:30%;" />
+    </form>
+</div>

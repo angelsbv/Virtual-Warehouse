@@ -1,0 +1,86 @@
+﻿@model Almacen.Models.Cliente
+
+@{
+    ViewData["Title"] = "Edición";
+}
+
+<h1>Editar Cliente</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form onsubmit="return Vald();" asp-action="EditarCliente">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IDCliente" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellido" class="control-label"></label>
+                <input asp-for="Apellido" class="form-control" />
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sexo" class="control-label"></label>
+                <select asp-for="Sexo" class="form-control">
+                    <option value="">Seleccione un sexo</option>
+                    @{
+
+                        if (Model != null)
+                        {
+                            if (Model.Sexo.ToString() == "M")
+                            {
+                                <option value="M" selected>Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="O">Otro</option>
+                            }
+                            else if (Model.Sexo.ToString() == "F")
+                            {
+                                <option value="M">Masculino</option>
+                                <option value="F" selected>Femenino</option>
+                                <option value="O">Otro</option>
+                            }
+                            else
+                            {
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="O" selected>Otro</option>
+                            }
+                        }
+
+                    }
+                </select>
+                <span asp-validation-for="Sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion" class="control-label">Dirección</label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" id="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaNacimiento" class="control-label">Fecha de Nacimiento</label>
+                <input asp-for="FechaNacimiento" type="date" class="form-control" id="fechaNacimiento" />
+                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="width:100%;">
+                <input type="submit" value="Guardar Cambios" class="btn btn-outline-primary" style="width:100%;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver Atrás</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/EmailVald.js"></script>
+    <script src="~/js/ClienteVald.js"></script>
+}

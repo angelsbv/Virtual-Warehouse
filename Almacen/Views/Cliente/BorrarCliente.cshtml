@@ -1,0 +1,74 @@
+﻿@model Almacen.Models.Cliente
+
+@{
+    ViewData["Title"] = "Eliminando Cliente";
+}
+
+<h1>Borrar Cliente</h1>
+<h3>También se eliminarán todas sus referencias/ventas.</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Nombre
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Nombre
+        </dd>
+        <dt class="col-sm-2">
+            Apellido
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Apellido
+        </dd>
+        <dt class="col-sm-2">
+            Sexo
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                if (Model.Sexo.ToString() == "M")
+                {
+                    <span>Masculino</span>
+                }
+                else if (Model.Sexo.ToString() == "F")
+                {
+                    <span>Femenino</span>
+                }
+                else
+                {
+                    <span>Femenino</span>
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            Dirección
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Direccion
+        </dd>
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class="col-sm-2">
+            Fecha de Nacimiento
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FechaNacimiento.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            Fecha de Registro
+        </dt>
+        <dd class="col-sm-10">
+            @Model.FechaRegistro
+        </dd>
+    </dl>
+
+    <form asp-action="BorrarCliente">
+        <input type="hidden" asp-for="IDCliente" />
+        <input type="submit" value="Borrar Cliente" class="btn btn-outline-danger" style="margin:10px;margin-left:0px;width:30%;" />
+    </form>
+    <a asp-action="Index">Volver atrás</a>
+</div>
